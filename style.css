@@ -1,1 +1,109 @@
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game-board {
+    width: 100%;
+    height: 500px;
+    border-bottom: 15px solid rgb(8, 149, 24);
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    transition: background 1s ease;
+}
+
+/* Climas */
+.game-board.day {
+    background: linear-gradient(#156c8f, #adccd8); /* Dia */
+}
+
+.game-board.night {
+    background: linear-gradient(#000428, #004e92); /* Noite */
+}
+
+.game-board.rainy {
+    background: linear-gradient(#3a3a3a, #7f8c8d); /* Chuva */
+}
+
+.game-board.rainy::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url('../img/rain.gif') center / cover no-repeat;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+    transition: opacity 1s ease;
+}
+
+.game-board:not(.rainy)::after {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.mario {
+    width: 150px;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+}
+
+.pipe {
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+    animation: pipe-animation var(--pipe-speed, 1.5s) infinite linear;
+    transition: animation-duration 0.5s ease; /* deixa suave a mudança */
+}
+
+
+.clouds {
+    position: absolute;
+    width: 550px;
+    animation: clouds-animation 20s linear infinite;
+    top: 50px;
+    z-index: 0;
+}
+
+.jump {
+    animation: jump 500ms ease-out;
+}
+
+@keyframes pipe-animation {
+    from {
+        right: -80%;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+@keyframes jump {
+    0% { bottom: 0; }
+    40%, 50%, 60% { bottom: 180px; }
+    100% { bottom: 0; }
+}
+
+@keyframes clouds-animation {
+    0% { left: 100%; }
+    100% { left: -550px; }
+}
+
+.score-board {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    z-index: 2;
+}
+
+.score-board h2 {
+    margin: 5px 0;
+}
