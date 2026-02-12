@@ -1,1 +1,39 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Mario Game</title>
+</head>
+<body>
+    <div class="game-board day" id="gameBoard">
+        <img src="./img/mario.gif" class="mario" />
+        <img src="./img/pipe.png" class="pipe" />
+        <img src="./img/clouds.png" class="clouds" />
+
+        <div class="score-board">
+            <h2>Fase: <span id="fase">1</span></h2>
+            <h2>Pontos: <span id="pontos">0</span></h2>
+        </div>
+
+        <!-- Botão de Reinício -->
+        <button id="restartButton" style="
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            border: none;
+            background: #f00;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 3;
+            display: none;
+        ">Reiniciar</button>
+    </div>
+</body>
+</html>
