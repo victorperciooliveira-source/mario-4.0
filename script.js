@@ -16,7 +16,7 @@ backgroundMusic.loop = true;
 backgroundMusic.volume = 1.0;
 
 // Som de mudança de fase
-const faseSound = new Audio('./mp3/Mario Yahoo-QuickSounds.com.mp3);
+const faseSound = new Audio('./mp3/super-mario-64-yahoo-sound.mp3');
 faseSound.volume = 1.0; // ajusta volume se precisar
 
 // Inicia a música após a primeira interação do usuário
