@@ -17,7 +17,7 @@ backgroundMusic.volume = 1.0;
 
 // Som de mudança de fase
 const faseSound = new Audio('./mp3/Mario Yahoo-QuickSounds.com.mp3);
-faseSound.volume = 5.0; // ajusta volume se precisar
+faseSound.volume = 1.0; // ajusta volume se precisar
 
 // Inicia a música após a primeira interação do usuário
 const iniciarMusica = () => {
