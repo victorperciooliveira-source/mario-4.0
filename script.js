@@ -6,12 +6,12 @@ const gameBoard = document.querySelector('.game-board');
 const restartButton = document.getElementById('restartButton');
 
 // Sons
-const jumpSound = new Audio('./mp3/wolfy_sanic-jump-15984.mp3');
+const jumpSound = new Audio('./mp3/wolfy_sanic-jump-15984');
 jumpSound.volume = 0.4; // volume mais baixo para o pulo
-const gameOverSound = new Audio('./mp3/mario_game_over_sms.mp3');
+const gameOverSound = new Audio('./mp3/mario-bros.mp3');
 
 // Música de fundo
-const backgroundMusic = new Audio('./mp3/howling_houd_music-retro-egyptian-theme-187380.mp3');
+const backgroundMusic = new Audio('./mp3/super-mario-bros-music.mp3');
 backgroundMusic.loop = true;
 backgroundMusic.volume = 1.0;
 
