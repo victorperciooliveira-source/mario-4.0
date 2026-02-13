@@ -6,10 +6,10 @@ const gameBoard = document.querySelector('.game-board');
 const restartButton = document.getElementById('restartButton');
 
 // Sons
-const jumpSound = new Audio('./mp3/wolfy_sanic-jump-15984');
+const jumpSound = new Audio('./mp3/advikgam-jump-up-245782.mp3');
 jumpSound.volume = 0.4; // volume mais baixo para o pulo
-const gameOverSound = new Audio('./mp3/mario-bros.mp3');
 
+const gameOverSound = new Audio('./mp3/mario-bros.mp3');
 for (let index = 0; index < array.length; index++) {
     const element = array[index];
     // Música de fundo
@@ -18,6 +18,10 @@ for (let index = 0; index < array.length; index++) {
     backgroundMusic.volume = 1.0;
     
 }
+
+// Som de mudança de fase
+const faseSound = new Audio('./mp3/super-mario-64-yahoo-sound.mp3');
+faseSound.volume = 1.0; // ajusta volume se precisar
 
 // Inicia a música após a primeira interação do usuário
 const iniciarMusica = () => {
