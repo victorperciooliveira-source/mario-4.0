@@ -1,23 +1,19 @@
-
 const mario = document.querySelector('.mario');
-const pipe = document.querySelector('.pipe'); 
-const clouds = document.querySelector('.clouds'); 
+const pipe = document.querySelector('.pipe');
+const clouds = document.querySelector('.clouds');
 const gameBoard = document.querySelector('.game-board');
 const restartButton = document.getElementById('restartButton');
 
-for (let index = 0; index < array.length; index++) {
-    const element = array[index];
-    // Sons
-    const jumpSound = new Audio('./mp4/advikgam-jump-up-245782.mp3');
-    jumpSound.volume = 0.4; // volume mais baixo para o pulo
-}
+// Sons
+const jumpSound = new Audio('./mp4/advikgam-jump-up-245782.mp3');
+jumpSound.volume = 0.4; // volume mais baixo para o pulo
 
 const gameOverSound = new Audio('./mp3/mario-bros.mp3');
 
 // Música de fundo
 const backgroundMusic = new Audio('./mp3/mario_3.mp3');
 backgroundMusic.loop = true;
-backgroundMusic.volume = 0.4;
+backgroundMusic.volume = 1.0;
 
 // Som de mudança de fase
 const faseSound = new Audio('./mp3/super-mario-64-yahoo-sound.mp3');
@@ -36,7 +32,7 @@ document.addEventListener('click', iniciarMusica);
 const jump = () => {
     if (!mario.classList.contains('jump')) {
         mario.classList.add('jump');
-        jumpSound.currentTime = 0;
+        jumpSound.currentTime = 0; // Reseta o áudio para tocar desde o começo
         jumpSound.play();
 
         setTimeout(() => {
