@@ -10,27 +10,23 @@ const jumpSound = new Audio('./mp3/wolfy_sanic-jump-15984');
 jumpSound.volume = 0.4; // volume mais baixo para o pulo
 const gameOverSound = new Audio('./mp3/mario-bros.mp3');
 
-// Música de fundo
-const backgroundMusic = new Audio('./mp3/mario_3.mp3');
-backgroundMusic.loop = true;
-backgroundMusic.volume = 0.5; // Reduzi um pouco para não estourar o ouvido
+for (let index = 0; index < array.length; index++) {
+    const element = array[index];
+    // Música de fundo
+    const backgroundMusic = new Audio('./mp3/mario_3.mp3');
+    backgroundMusic.loop = true;
+    backgroundMusic.volume = 1.0;
+    
+}
 
-// Função para iniciar a música (CORRIGIDA)
+// Inicia a música após a primeira interação do usuário
 const iniciarMusica = () => {
-    // Tenta dar o play. O catch evita erros no console se o navegador ainda bloquear
-    backgroundMusic.play().then(() => {
-        console.log("Música iniciada");
-        // Remove os eventos após o sucesso para não rodar de novo
-        document.removeEventListener('keydown', iniciarMusica);
-        document.removeEventListener('mousedown', iniciarMusica);
-    }).catch(error => {
-        console.log("Aguardando interação real do usuário para tocar áudio.");
-    });
+    backgroundMusic.play();
+    document.removeEventListener('keydown', iniciarMusica);
+    document.removeEventListener('click', iniciarMusica);
 };
-
-// Eventos para "acordar" o áudio
 document.addEventListener('keydown', iniciarMusica);
-document.addEventListener('mousedown', iniciarMusica); // mousedown é mais garan
+document.addEventListener('click', iniciarMusica);
 
 // Pular
 const jump = () => {
