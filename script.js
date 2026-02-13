@@ -5,22 +5,15 @@ const clouds = document.querySelector('.clouds');
 const gameBoard = document.querySelector('.game-board');
 const restartButton = document.getElementById('restartButton');
 
-for (let index = 0; index < array.length; index++) {
-    const element = array[index];
-    // Sons
-    const jumpSound = new Audio('./mp3/advikgam-jump-up-245782.mp3');
-    jumpSound.volume = 0.4; // volume mais baixo para o pulo
-}
-
+// Sons
+const jumpSound = new Audio('./mp3/advikgam-jump-up-245782.mp3');
+jumpSound.volume = 0.4; // volume mais baixo para o pulo
 const gameOverSound = new Audio('./mp3/mario-bros.mp3');
-for (let index = 0; index < array.length; index++) {
-    const element = array[index];
-    // Música de fundo
-    const backgroundMusic = new Audio('./mp3/mario_3.mp3');
-    backgroundMusic.loop = true;
-    backgroundMusic.volume = 1.0;
-    
-}
+
+// Música de fundo
+const backgroundMusic = new Audio('./mp3/mario_3.mp3');
+backgroundMusic.loop = true;
+backgroundMusic.volume = 1.0;
 
 // Som de mudança de fase
 const faseSound = new Audio('./mp3/super-mario-64-yahoo-sound.mp3');
