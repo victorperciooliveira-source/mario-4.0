@@ -11,7 +11,7 @@ jumpSound.volume = 0.4; // volume mais baixo para o pulo
 const gameOverSound = new Audio('./mp3/mario-bros.mp3');
 
 // Música de fundo
-const backgroundMusic = new Audio('./mp3/super-mario-bros-music.mp3');
+const backgroundMusic = new Audio('./mp3/mario_3.mp3');
 backgroundMusic.loop = true;
 backgroundMusic.volume = 1.0;
 
