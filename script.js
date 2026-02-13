@@ -13,20 +13,24 @@ const gameOverSound = new Audio('./mp3/mario-bros.mp3');
 // Música de fundo
 const backgroundMusic = new Audio('./mp3/mario_3.mp3');
 backgroundMusic.loop = true;
-backgroundMusic.volume = 1.0;
+backgroundMusic.volume = 0.5; // Reduzi um pouco para não estourar o ouvido
 
-// Som de mudança de fase
-const faseSound = new Audio('./mp3/super-mario-64-yahoo-sound.mp3');
-faseSound.volume = 1.0; // ajusta volume se precisar
-
-// Inicia a música após a primeira interação do usuário
+// Função para iniciar a música (CORRIGIDA)
 const iniciarMusica = () => {
-    backgroundMusic.play();
-    document.removeEventListener('keydown', iniciarMusica);
-    document.removeEventListener('click', iniciarMusica);
+    // Tenta dar o play. O catch evita erros no console se o navegador ainda bloquear
+    backgroundMusic.play().then(() => {
+        console.log("Música iniciada");
+        // Remove os eventos após o sucesso para não rodar de novo
+        document.removeEventListener('keydown', iniciarMusica);
+        document.removeEventListener('mousedown', iniciarMusica);
+    }).catch(error => {
+        console.log("Aguardando interação real do usuário para tocar áudio.");
+    });
 };
+
+// Eventos para "acordar" o áudio
 document.addEventListener('keydown', iniciarMusica);
-document.addEventListener('click', iniciarMusica);
+document.addEventListener('mousedown', iniciarMusica); // mousedown é mais garan
 
 // Pular
 const jump = () => {
