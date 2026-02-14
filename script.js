@@ -6,8 +6,8 @@ const gameBoard = document.querySelector('.game-board');
 const restartButton = document.getElementById('restartButton');
 
 // Sons
-const jumpSound = new Audio('./mp3/wolfy_sanic-jump-15984');
-jumpSound.volume = 0.4; // volume mais baixo para o pulo
+const jumpSound = new Audio('./maro-jump-sound-effect_1.mp3');
+jumpSound.volume = 0.4; // volume mantido em 0.4 conforme seu original
 const gameOverSound = new Audio('./mp3/mario-bros.mp3');
 
 // Música de fundo
