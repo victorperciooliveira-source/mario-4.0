@@ -128,3 +128,10 @@ const loop = setInterval(() => {
 
 // Reinício
 restartButton.addEventListener('click', () => location.reload());
+
+// Tela cheia (quando possível)
+document.addEventListener("click", () => {
+    if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen().catch(() => {});
+                }
+                }, { once: true });
