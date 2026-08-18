@@ -3,12 +3,20 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="screen-orientation" content="landscape" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <title>Mario Game</title>
 </head>
 <body>
+    <!-- Aviso de Orientação -->
+    <div id="orientationWarning" class="orientation-warning">
+        <p>🔄 Gire o dispositivo para Paisagem</p>
+    </div>
+
     <div class="game-board day" id="gameBoard">
         <img src="./img/mario.gif" class="mario" />
         <img src="./img/pipe.png" class="pipe" />
@@ -19,22 +27,11 @@
             <h2>Pontos: <span id="pontos">0</span></h2>
         </div>
 
+        <!-- Área de Toque para Mobile -->
+        <div id="touchArea" class="touch-area"></div>
+
         <!-- Botão de Reinício -->
-        <button id="restartButton" style="
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 10px 20px;
-            border: none;
-            background: #f00;
-            color: #fff;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            z-index: 3;
-            display: none;
-        ">Reiniciar</button>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+        <button id="restartButton" class="restart-button">Reiniciar</button>
     </div>
 </body>
 </html>

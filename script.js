@@ -4,10 +4,37 @@ const pipe = document.querySelector('.pipe');
 const clouds = document.querySelector('.clouds'); 
 const gameBoard = document.querySelector('.game-board');
 const restartButton = document.getElementById('restartButton');
+const orientationWarning = document.getElementById('orientationWarning');
+const touchArea = document.getElementById('touchArea');
+
+// Detectar orientação do dispositivo
+const checkOrientation = () => {
+    const isMobile = window.innerWidth <= 768;
+    const isPortrait = window.matchMedia('(orientation: portrait)').matches;
+    
+    if (isMobile && isPortrait) {
+        orientationWarning.classList.add('show');
+        gameBoard.style.display = 'none';
+        touchArea.classList.remove('show');
+    } else {
+        orientationWarning.classList.remove('show');
+        gameBoard.style.display = 'block';
+        if (isMobile && !isPortrait) {
+            touchArea.classList.add('show');
+        } else {
+            touchArea.classList.remove('show');
+        }
+    }
+};
+
+// Verificar orientação ao carregar e quando mudar
+window.addEventListener('load', checkOrientation);
+window.addEventListener('orientationchange', checkOrientation);
+window.addEventListener('resize', checkOrientation);
 
 // Sons
 const jumpSound = new Audio('./maro-jump-sound-effect_1.mp3');
-jumpSound.volume = 1.0; // volume mantido em 0.4 conforme seu original
+jumpSound.volume = 1.0;
 const gameOverSound = new Audio('./mp3/mario-bros.mp3');
 
 // Música de fundo
@@ -17,16 +44,18 @@ backgroundMusic.volume = 1.0;
 
 // Som de mudança de fase
 const faseSound = new Audio('./mp3/super-mario-64-yahoo-sound.mp3');
-faseSound.volume = 1.0; // ajusta volume se precisar
+faseSound.volume = 1.0;
 
 // Inicia a música após a primeira interação do usuário
 const iniciarMusica = () => {
     backgroundMusic.play();
     document.removeEventListener('keydown', iniciarMusica);
     document.removeEventListener('click', iniciarMusica);
+    document.removeEventListener('touchstart', iniciarMusica);
 };
 document.addEventListener('keydown', iniciarMusica);
 document.addEventListener('click', iniciarMusica);
+document.addEventListener('touchstart', iniciarMusica);
 
 // Pular
 const jump = () => {
@@ -42,6 +71,13 @@ const jump = () => {
 };
 
 document.addEventListener('keydown', jump);
+
+// Suporte a toque (touch) para mobile
+document.addEventListener('touchstart', jump);
+if (touchArea) {
+    touchArea.addEventListener('click', jump);
+    touchArea.addEventListener('touchstart', jump);
+}
 
 // Pontuação e fase
 let pontos = 0;
@@ -130,8 +166,8 @@ const loop = setInterval(() => {
 restartButton.addEventListener('click', () => location.reload());
 
 // Tela cheia (quando possível)
-document.addEventListener("click", () => {
+document.addEventListener('click', () => {
     if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen().catch(() => {});
-                }
-                }, { once: true });
+        document.documentElement.requestFullscreen().catch(() => {});
+    }
+}, { once: true });

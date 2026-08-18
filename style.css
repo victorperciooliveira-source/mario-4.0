@@ -5,11 +5,49 @@
     box-sizing: border-box;
 }
 
-.game-board {
+html, body {
     width: 100%;
-    height: 500px;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Aviso de Orientação */
+#orientationWarning {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-size: 28px;
+    text-align: center;
+}
+
+#orientationWarning.show {
+    display: flex;
+}
+
+#orientationWarning p {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Tabuleiro do Jogo */
+.game-board {
+    width: 100vw;
+    height: 100vh;
     border-bottom: 15px solid rgb(8, 149, 24);
-    margin: 0 auto;
     position: relative;
     overflow: hidden;
     transition: background 1s ease;
@@ -17,22 +55,24 @@
 
 /* Climas */
 .game-board.day {
-    background: linear-gradient(#156c8f, #adccd8); /* Dia */
+    background: linear-gradient(#156c8f, #adccd8);
 }
 
 .game-board.night {
-    background: linear-gradient(#000428, #004e92); /* Noite */
+    background: linear-gradient(#000428, #004e92);
 }
 
 .game-board.rainy {
-    background: linear-gradient(#3a3a3a, #7f8c8d); /* Chuva */
+    background: linear-gradient(#3a3a3a, #7f8c8d);
 }
 
 .game-board.rainy::after {
     content: '';
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: url('../img/rain.gif') center / cover no-repeat;
     pointer-events: none;
     z-index: 0;
@@ -45,6 +85,7 @@
     transition: opacity 1s ease;
 }
 
+/* Mario */
 .mario {
     width: 150px;
     position: absolute;
@@ -52,15 +93,16 @@
     z-index: 1;
 }
 
+/* Cano */
 .pipe {
     position: absolute;
     bottom: 0;
     width: 80px;
     animation: pipe-animation var(--pipe-speed, 1.5s) infinite linear;
-    transition: animation-duration 0.5s ease; /* deixa suave a mudança */
+    transition: animation-duration 0.5s ease;
 }
 
-
+/* Nuvens */
 .clouds {
     position: absolute;
     width: 550px;
@@ -69,6 +111,7 @@
     z-index: 0;
 }
 
+/* Animações */
 .jump {
     animation: jump 500ms ease-out;
 }
@@ -97,82 +140,140 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 10px 20px;
     border-radius: 10px;
-    font-family: Arial, sans-serif;
     z-index: 2;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .score-board h2 {
     margin: 5px 0;
+    font-size: 16px;
 }
 
-html, body {
-        width: 100%;
-            height: 100%;
-                overflow: hidden;
-                }
+/* Botão de Reinício */
+.restart-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: #f00;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 3;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
 
-                .game-board {
-                    width: 100vw;
-                        height: 100vh;
-                            max-height: 100vh;
-                            }
+.restart-button:hover {
+    background: #d00;
+    transform: scale(1.05);
+}
 
-                            /* Responsivo para celular */
-                            @media (max-width: 768px) {
+.restart-button:active {
+    transform: scale(0.95);
+}
 
-                                .game-board {
-                                        width: 100vw;
-                                                height: 100vh;
-                                                    }
+/* Área de Toque para Mobile */
+#touchArea {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    cursor: pointer;
+    display: none;
+}
 
-                                                        .mario {
-                                                                width: 100px;
-                                                                    }
+#touchArea.show {
+    display: block;
+}
 
-                                                                        .pipe {
-                                                                                width: 60px;
-                                                                                    }
+/* Responsivo para Tablet/Desktop */
+@media (max-width: 1024px) and (orientation: landscape) {
+    .mario {
+        width: 120px;
+    }
 
-                                                                                        .clouds {
-                                                                                                width: 280px;
-                                                                                                    }
+    .pipe {
+        width: 70px;
+    }
 
-                                                                                                        .score-board {
-                                                                                                                padding: 8px 12px;
-                                                                                                                        font-size: 14px;
-                                                                                                                            }
+    .clouds {
+        width: 350px;
+    }
 
-                                                                                                                                #restartButton {
-                                                                                                                                        padding: 8px 15px;
-                                                                                                                                                font-size: 14px;
-                                                                                                                                                    }
-                                                                                                                                                    }
+    .score-board {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
 
-                                                                                                                                                    /* Quando o celular estiver deitado */
-                                                                                                                                                    @media (max-width: 768px) and (orientation: landscape) {
+    .score-board h2 {
+        font-size: 14px;
+        margin: 3px 0;
+    }
 
-                                                                                                                                                        .game-board {
-                                                                                                                                                                width: 100vw;
-                                                                                                                                                                        height: 100vh;
-                                                                                                                                                                            }
+    .restart-button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
 
-                                                                                                                                                                                .mario {
-                                                                                                                                                                                        width: 120px;
-                                                                                                                                                                                            }
+/* Responsivo para Mobile em Portrait (esconde o jogo) */
+@media (max-width: 768px) and (orientation: portrait) {
+    .game-board {
+        display: none;
+    }
 
-                                                                                                                                                                                                .pipe {
-                                                                                                                                                                                                        width: 70px;
-                                                                                                                                                                                                            }
+    #orientationWarning {
+        display: flex;
+    }
+}
 
-                                                                                                                                                                                                                .clouds {
-                                                                                                                                                                                                                        width: 350px;
-                                                                                                                                                                                                                            }
+/* Responsivo para Mobile em Landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+    .mario {
+        width: 100px;
+    }
 
-                                                                                                                                                                                                                                .score-board {
-                                                                                                                                                                                                                                        font-size: 16px;
-                                                                                                                                                                                                                                            }
-                                                                                            
+    .pipe {
+        width: 60px;
+    }
+
+    .clouds {
+        width: 280px;
+    }
+
+    .score-board {
+        padding: 6px 10px;
+        font-size: 12px;
+        top: 5px;
+        left: 5px;
+    }
+
+    .score-board h2 {
+        font-size: 12px;
+        margin: 2px 0;
+    }
+
+    .restart-button {
+        padding: 6px 12px;
+        font-size: 12px;
+        top: 5px;
+        right: 5px;
+    }
+
+    #touchArea.show {
+        display: block;
+    }
+}
+
+/* Esconde scrollbars */
+::-webkit-scrollbar {
+    display: none;
 }
